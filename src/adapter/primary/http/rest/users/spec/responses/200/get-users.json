@@ -1,0 +1,28 @@
+{
+  "getUsers200": {
+    "description": "It's a schema response 200 to get all users",
+    "type": "object",
+    "properties": {
+      "message": {
+        "type": "string",
+        "description": "Response's message"
+      },
+      "data": {
+        "type": "object",
+        "description": "Response's data",
+        "properties": {
+          "users": {
+            "type": "array"
+          }
+        }
+      }
+    },
+    "example": {
+      "message": "All users data was retrieved successfully.",
+      "data": {
+        "users": []
+      }
+    },
+    "required": []
+  }
+}
