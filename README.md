@@ -1,1 +1,1 @@
-# hexagonal-ddd-fastify-swagger-prisma-template
+# hexagonal ddd template

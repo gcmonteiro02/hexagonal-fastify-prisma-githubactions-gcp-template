@@ -1,0 +1,10 @@
+generator client {
+  provider        = ""
+  previewFeatures = []
+}
+
+// Postgresql can be replaced.
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}

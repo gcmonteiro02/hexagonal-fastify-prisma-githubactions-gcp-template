@@ -1,21 +1,9 @@
 {
-    "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "lib": ["esnext", "dom"],
-        "module": "commonjs",
-        "rootDir": "./",
-        "baseUrl": ".",
-        "moduleResolution": "node",
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "resolveJsonModule": true,
-        "outDir": "dist",
-        "sourceMap": true,
-        "target": "esnext",
-        "paths": {
-            "../../../*": ["./src/*"]
-        }
-    },
-    "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "rootDir": "./",
+    "baseUrl": ".",
+    "outDir": "dist"
+  }
 }
