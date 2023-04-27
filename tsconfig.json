@@ -2,7 +2,7 @@
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
-        "lib": ["esnext"],
+        "lib": ["esnext", "dom"],
         "module": "commonjs",
         "rootDir": "./",
         "baseUrl": ".",
@@ -14,10 +14,8 @@
         "sourceMap": true,
         "target": "esnext",
         "paths": {
-            "../../../*": ["./src/*"],
-            "@shared/*" : ["./src/shared/*"]
+            "../../../*": ["./src/*"]
         }
     },
-    "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"],
-    "include": ["./src/**/*.tsx", "./src/**/*.ts"]
+    "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]
 }

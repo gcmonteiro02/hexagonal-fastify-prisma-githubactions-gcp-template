@@ -1,8 +1,8 @@
 {
-  "name": "rota-do-vinho",
+  "name": "hexagonal-ddd-template",
   "version": "1.0.0",
-  "description": "Wine project",
-  "main": "./src/app.ts",
+  "description": "Hexagonal template",
+  "main": "index.js",
   "author": "Gabriel Monteiro",
   "license": "MIT",
   "private": true,
@@ -10,17 +10,17 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "lint:fix": "yarn lint --fix",
     "dev": "nodemon",
-    "build": "yarn lint && tsc -p ./tsconfig.json",
-    "start": "node ./dist/src/app.js",
+    "build": "rimraf ./dist && yarn lint && tsc -p ./tsconfig.json",
+    "start": "node ./dist/index.js",
     "gcp-build": "tsc -p ."
   },
   "devDependencies": {
     "@jest/types": "^29.5.0",
-    "@types/morgan": "^1.9.4",
     "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "eslint": "^8.17.0",
     "nodemon": "^2.0.22",
+    "rimraf": "^5.0.0",
     "ts-dotenv": "^0.8.3",
     "tslint": "^6.1.3",
     "typescript": "^5.0.4"
@@ -31,12 +31,15 @@
     "@fastify/swagger": "^8.3.1",
     "@fastify/swagger-ui": "^1.8.0",
     "@prisma/client": "^4.12.0",
-    "ajv": "^8.11.0",
-    "ajv-formats": "^2.1.1",
     "dotenv": "^16.0.3",
     "fastify": "^4.15.0",
     "http-status-codes": "^2.2.0",
-    "morgan": "^1.10.0",
-    "reflect-metadata": "^0.1.13"
+    "husky": "^8.0.3",
+    "tsc": "^2.0.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && echo \"[Husky] pre-commit is running, please wait...\""
+    }
   }
 }
