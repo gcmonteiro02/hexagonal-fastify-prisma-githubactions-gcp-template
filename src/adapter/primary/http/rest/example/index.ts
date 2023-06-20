@@ -1,0 +1,1 @@
+export { configureExampleRouter } from './routes';

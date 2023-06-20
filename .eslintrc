@@ -1,9 +1,7 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -14,7 +12,7 @@
     "quotes": ["warn", "single"],
     "@typescript-eslint/no-unused-vars": "error",
     "semi": "error",
-    "array-element-newline": ["error", "always"],
+    "array-element-newline": ["error", "never"],
     "func-call-spacing": ["error", "never"],
     "function-paren-newline": ["error", "never"],
     "padding-line-between-statements": ["error", { "blankLine": "always", "prev": "*", "next": "return" }],

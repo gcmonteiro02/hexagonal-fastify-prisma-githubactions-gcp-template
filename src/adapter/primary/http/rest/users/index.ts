@@ -1,1 +1,0 @@
-export { configureEstablishmentsRouter } from './routes';
