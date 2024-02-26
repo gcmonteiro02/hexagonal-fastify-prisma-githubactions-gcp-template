@@ -1,4 +1,4 @@
-import Fastify, { FastifyInstance } from 'fastify';
+import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import RateLimit from '@fastify/rate-limit';
 import Cors from '@fastify/cors';
 import { fastifySwaggerUi } from '@fastify/swagger-ui';
@@ -20,12 +20,18 @@ const webFrameworkDocumentation = fastifySwagger;
 
 const WebFrameworkInstance = Fastify({ logger: true });
 
+type WebFrameworkReply = FastifyReply;
+
+type WebFrameworkRequest = FastifyRequest;
+
 export {
-  WebFrameworkType,
   webFrameworkRateLimit,
   webFrameworkCors,
   webFrameworkDocumentationUi,
   webFrameworkDocumentation,
   WebFrameworkInstance,
-  WebFrameworkDocumentationSettingsType
+  WebFrameworkType,
+  WebFrameworkDocumentationSettingsType,
+  WebFrameworkReply,
+  WebFrameworkRequest
 };

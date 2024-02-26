@@ -14,7 +14,7 @@
     "semi": "error",
     "array-element-newline": ["error", "never"],
     "func-call-spacing": ["error", "never"],
-    "function-paren-newline": ["error", "never"],
+    "function-paren-newline": 0,
     "padding-line-between-statements": ["error", { "blankLine": "always", "prev": "*", "next": "return" }],
     "comma-dangle": ["error", "never"],
     "no-constant-condition": "error",

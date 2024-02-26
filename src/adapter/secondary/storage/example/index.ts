@@ -1,1 +1,1 @@
-export { ExampleStorage as Storage } from './ExampleStorage';
+export { ExampleStorage as ApplicationStorage } from './ExampleStorage';

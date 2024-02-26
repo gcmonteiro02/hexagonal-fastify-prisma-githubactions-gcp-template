@@ -1,11 +1,14 @@
 import { ConfigureRouterOptions, configRouter } from '../../../../../src/adapter/primary/http/rest/router';
+
 import {
   WebFrameworkInstance,
   webFrameworkDocumentation,
   webFrameworkDocumentationUi,
   WebFrameworkType,
   webFrameworkCors,
-  webFrameworkRateLimit
+  webFrameworkRateLimit,
+  WebFrameworkReply,
+  WebFrameworkRequest
 } from './fastify';
 
 export type IWebFramework = {
@@ -53,4 +56,4 @@ class WebFramework implements IWebFramework {
   };
 }
 
-export { WebFramework, WebFrameworkType };
+export { WebFramework, WebFrameworkType, WebFrameworkReply, WebFrameworkRequest };
