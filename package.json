@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "dev": "nodemon",
+    "dev": "nodemon --watch src --ext ts --exec 'ts-node' src/core/app/server.ts",
     "build": "rimraf ./dist && yarn lint && tsc -p ./tsconfig.json",
     "start": "node ./dist/index.js",
     "postinstall": "npx prisma generate",
@@ -25,6 +25,7 @@
     "eslint-config-prettier": "^8.8.0",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
+    "prisma": "^5.10.2",
     "rimraf": "^5.0.0",
     "ts-dotenv": "^0.8.3",
     "tslint": "^6.1.3",
@@ -39,7 +40,7 @@
     "dotenv": "^16.0.3",
     "fastify": "^4.15.0",
     "husky": "4.3.8",
-    "prisma": "^4.13.0",
+    "ts-node": "^10.9.2",
     "tsc": "^2.0.4"
   },
   "husky": {

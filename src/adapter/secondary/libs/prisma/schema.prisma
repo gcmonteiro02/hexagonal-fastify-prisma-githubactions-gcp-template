@@ -1,10 +1,15 @@
-generator client {
-  provider        = ""
-  previewFeatures = []
-}
-
-// Postgresql can be replaced.
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = []
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
 }

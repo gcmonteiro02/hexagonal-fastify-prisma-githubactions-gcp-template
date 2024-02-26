@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import { setApplicationConfig } from './app/index';
+import { setApplicationConfig } from './index';
 
 dotenv.config();
 

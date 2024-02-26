@@ -1,15 +1,16 @@
-import { FastifyInstance } from 'fastify';
-import { PrimaryHttpPort as UserPrimaryPort } from '../../../../domain/example/port';
-import { configureExampleRouter } from './example';
+import { configureExampleRouter } from './user';
+
+import { PrimaryHttpPort as UserPrimaryPort } from '../../../../core/domain/user/port';
+import { WebFrameworkType } from '../../../../adapter/secondary/frameworks/fastify';
 
 type ConfigureRouterOptions = {
-  ExampleService: UserPrimaryPort;
+  UserService: UserPrimaryPort;
 };
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function configRouter(app: FastifyInstance, _ConfigureRouterOptionsSet: ConfigureRouterOptions) {
-  configureExampleRouter(app);
+
+const configRouter = (app: WebFrameworkType, ConfigureRouterOptionsSet: ConfigureRouterOptions) => {
+  configureExampleRouter(app, ConfigureRouterOptionsSet.UserService);
 
   return app;
-}
+};
 
 export { configRouter, ConfigureRouterOptions };
