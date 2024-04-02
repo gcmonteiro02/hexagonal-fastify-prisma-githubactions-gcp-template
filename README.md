@@ -5,197 +5,176 @@
 </p>
 <p align="center">
 
-<br />
-<br />
+[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](README.pt-br.md)
 
-<h2 align="left">Sumário</h1>
+## Topics
 
-1. [ Qual o propósito desse template? ](#qual-o-propósito-desse-template)
-2. [ O que é o Hexagonal? ](#o-que-é-o-hexagonal)
-3. [ Tecnologia e estruturas ](#tecnologias-e-estruturas)
-4. [ Executando o projeto no ambiente local ](#executando-o-projeto-no-ambiente-local)
-5. [ Como criar novas features no projeto utilizando o Hexagonal? ](#como-criar-novas-features-no-projeto-utilizando-o-hexagonal)
-6. [ Como criar um adaptador primário no projeto utilizando o Hexagonal? ](#como-criar-um-adaptador-primário-no-projeto-utilizando-o-hexagonal)
-7. [ Como criar um adaptador secundário no projeto utilizando o Hexagonal? ](#como-criar-um-adaptador-secundário-no-projeto-utilizando-o-hexagonal)
-8. [ Padrão de versionamento ](#padrao-de-versionamento)
-9. [ Débitos técnicos ](#débitos-técnicos)
-10. [ Contribuidores ](#contribuidores)
+1. [ What is the purpose of this template? ](#what-is-the-purpose-of-this-template)
+2. [ What is Hexagonal? ](#what-is-hexagonal)
+3. [ Technology and structures ](#technologies-and-structures)
+4. [ Running the project in the local environment ](#running-the-project-in-the-local-environment)
+5. [ How to create new features in the project using Hexagonal ](#how-to-create-new-features-in-the-project-using-hexagonal)
+6. [ How to create a primary adapter in the project using Hexagonal? ](#how-to-create-a-primary-adapter-in-the-project-using-hexagonal)
+7. [ How to create a secondary adapter in the project using Hexagonal? ](#how-to-create-a-secondary-adapter-in-the-project-using-hexagonal)
+8. [ Versioning pattern ](#versioning-pattern)
+9. [ Technical debits ](#technical-debits)
+10. [ Contributors ](#contributors)
 11. [ Devops ](#devops)
 
 <br />
 
-## Qual o propósito desse template?
+## What is the purpose of this template?
 
-O propósito desse template é facilitar a criação de um projeto novo utilizando a arquitetura Ports and Adapters de Alistair Cockburn.
+The purpose of this template is to make it easier to create a new project using Alistair Cockburn's Ports and Adapters architecture.
 
-## O que é o Hexagonal?
+## What is Hexagonal?
 
-### Dividimos a nossa estrutura hexágonal em três partes:
+### We have divided our hexagonal structure into three parts:
 
-Podemos dizer de forma simples que a arquitetura Hexagonal se divide em três partes, são elas:
+We can say in a simple way that the Hexagonal architecture is divided into three parts, they are:
 
-1. Centro do hexágono
-2. Lado esquerdo do hexágono (Adaptadores primários)
-3. Lado direito do hexágono (Adaptadores secundários)
+1. Center of the hexagon
+2. Left side of the hexagon (Primary adapters)
+3. Right side of the hexagon (Secondary adapters)
 
-### No centro do hexágono:
+### In the center of the hexagon:
 
-No centro do hexágono temos concentrado toda a camada da aplicação, que por si só representa as regras de negócio e os modelos do negócio. Essa camada tem por intenção ser isolada das demais, para que a regra de negócio se mantenha intacta
+In the center of the hexagon we have concentrated the entire application layer, which in itself represents the business rules and business models. This layer is intended to be isolated from the others, so that the business rule remains intact
 
-### Ao lado direito, adaptadores secundários:
+### On the right, secondary adapters:
 
-Os adaptadores secundários representam a parte de infraestrutura da aplicação. As atividades que estão contidas nos adaptadores secundários são por exemplo: Escrita em banco, envio de mensagem para filas, upload de imagem para buckets e etc...
+The secondary adapters represent the infrastructure part of the application. The activities that are contained in the secondary adapters are, for example: Writing to a bank, sending a message to queues, uploading an image to buckets and so on...
 
-### Ao lado esquerdo do hexágono, adaptadores primários:
+### To the left of the hexagon, primary adapters:
 
-Os adaptadores primários representam os nossos clients que vão se conectar na aplicação, sejam eles através de uma requisição HTTP ou uma interface CLI.
+The primary adapters represent our clients that will connect to the application, whether through an HTTP request or a CLI interface.
 
-### Portas:
+### Ports:
 
-As portas são a comunicação gateway entre o centro de seu hexágono com os lados esquerdo e direito do seu hexágono, com os lados externos. Elas nada mais são que os métodos que as classes implementam através de uma interface.
+The ports are the gateway communication between the center of your hexagon with the left and right sides of your hexagon, with the external sides. They are nothing more than the methods that classes implement through an interface.
 
 ### Adapters:
 
-Os adaptadores são os usuários das portas. Para cada porta que seu hexágono possui, um adaptador deve ser criado, portanto, você tem a liberdade de modificá-lo e apagá-lo dinamicamente
+The adapters are the users of the ports. For each port that your hexagon has, an adapter must be created, so you have the freedom to modify and delete it dynamically
 
-### Fluxo de uma requisição padrão na Arquitetura Hexagonal:
+### Flow of a standard request in the Hexagonal Architecture:
 
-Nos usuários de nossa aplicação temos os condutores da ação, que utilizarão os adaptadores primários, e isto "baterá" nas portas primárias. Essas por sua vez, irão bater na camada de aplicação utilizando a camada de serviços para executarem regras de negócio. Assim, as portas secundárias e os adaptadores conduzirão a ação até o fim do fluxo da aplicação.
-
-<br />
-
-Mais informações sobre a arquitetura Hexágonal:
-
-- [Alistair Cockburn - Fundador do Hexagonal](https://alistair.cockburn.us/hexagonal-architecture/)
+In the users of our application we have the drivers of the action, which will use the primary adapters, and this will "knock" on the primary ports. These, in turn, will hit the application layer using the service layer to execute business rules. Thus, the secondary ports and adapters will conduct the action to the end of the application flow.
 
 <br />
 
-[(Voltar ao topo)](#tópicos)
+More information about Hexagonal architecture:
+
+- [Alistair Cockburn - Founder of Hexagonal](https://alistair.cockburn.us/hexagonal-architecture/)
 
 <br />
 
-## Tecnologias e estruturas
+[(Back to top)](#topics)
 
-Hoje temos a arquitetura hexágonal representada da seguinte forma:
+<br />
 
+## Technologies and structures
+
+Today we have the hexagonal architecture represented as follows:
 ![Nodejs](assets/readme/hexagonal-structure.png)
 
 <br />
 
-[(Voltar ao topo)](#tópicos)
+[(Back to top)](#topics)
 
 <br />
 
-Utilizamos algumas das seguintes tecnologias dentro do projeto:
-
+We used some of the following technologies within the project:
 ![Nodejs](https://skillicons.dev/icons?i=nodejs,typescript,prisma,github)
 
 <br />
 
-## Executando o projeto no ambiente local
+## Running the project in the local environment
 
-Para rodar o projeto localmente, basta seguir as instruções listadas abaixo. É importante se atentar ao que é obrigatório.
+To run the project locally, just follow the instructions listed below. It is important to pay attention to what is mandatory.
 
-### > Instalação
+### > Installation
 
-Abaixo você pode acompanhar as instruções necessárias para executar esse projeto localmente.
+Below you can follow the instructions needed to run this project locally.
 
-1. Clone o repositório da API
-
+1. Clone the API repository
    ```sh
    git clone https://github.com/gcmonteiro02/hexagonal-fastify-prisma-githubactions-gcp-template
    ```
-
-2. Instale os pacotes do repositório da API utilizando o npm
-
+2. Install the packages from the API repository using npm
    ```sh
    npm i
    ```
-
-3. Configure as variáveis de ambiente para rodar o projeto localmente, elas ficam separados por ambiente, no seguinte diretório: [resources](resources)
-
+3. Set the environment variables to run the project locally, they are separated by environment, in the following directory: [resources](resources)
    ```yml
    DATABASE_URL: ${value}
    PORT: ${value}
    GCP_PROJECT: ${value}
    GCP_SA_KEY: ${value}
    ```
-
-4. Após a execução dos itens acima, é necessário executar o seguinte script:
-
+4. After executing the above items, you need to run the following script:
    ```sh
    npm run dev
    ```
+   <br />
+
+[(Back to top)](#topics)
+
+## How to create new features in the project using Hexagonal
+
+### Feature: Fetch a new User from the database.
+
+We can think a bit about this feature before building it. Here are some cases to think about:
+
+- \_Where does the user's search request come from?
+  If, for example, the search request comes directly from one of our clients and the communication is via HTTP Rest, then we can add the primary adapter ([src/adapter/primary/http/rest](src/adapter/primary/http/rest/user/routes.ts)), where this adapter will interface with the ports responsible for this communication with the application/services layer ([src/core/domain/user/port](src/core/domain/user/port.ts)). In short, all the applications that need to connect to our API will be destined for the left side of the Hexagon, i.e. they will always be primary adapters. Basically, these primary adapters are our users, be they end customers, products that need access to our API or even CLI's depending on the case. So again, everything that connects to our application and demands data can be considered primary adapters.
+  <br />
+
+- _We need to manipulate the user's data? for example, format it for a different model..._
+  We understand in this example that this is part of the application's business rule, so this condition needs to be within the application layer, more precisely in the services and domain layer, which is where the application's business rules are located ([src/core/domain/user/service](src/core/domain/user/service.ts), [src/core/domain/user/user](src/core/domain/user/user.ts)).
+
+  In this way, the primary adapter, which in our case is the client (frontend app that the end consumer is using) will communicate through the ports and reach the service and domain layers through them, strictly respecting what the ports say.
+
+  The flow of a request within the Hexagonal architecture is generally from the primary adapter, through the application layer and to the secondary adapters, after which the request is returned in the form of a response to the primary adapter that carried out the action.
+
+  Returning to our answer to our question, the formatting of the data takes place within the application layer, more precisely in the services layer, as it is a business rule.
+
+  We always need to keep the business rule within the application layer, because remember, adapters are replaceable, so we need to leave our business rule isolated.
+
+  By respecting the behavior described above, we guarantee that we will always receive what we expect, because the ports are responsible for the data that the application layer needs.
+
+  Regardless of who connects to the application layer (whatever the primary adapter, if it doesn't respect the ports, it won't connect to our application). Any secondary adapter can be replaced easily, as its successor will only need to implement the ports that the previous one did.
 
 <br />
 
-[(Voltar ao topo)](#tópicos)
+- _We need to save a log inside the application, recording that this search was carried out by our client, so what?_
+  Here we'll be talking about secondary adapters ([src/adapter/secondary](src/adapter/secondary)). Secondary adapters are seen as the infrastructure part of the application, so they include databases, queues, libs and so on.
 
-## Como criar novas features no projeto utilizando o hexagonal?
+  If we need to save a log inside the database, then we'll have to get our application layer to request the secondary adapters to perform this activity.
 
-<br />
+  The request comes from the primary adapter, passes through the ports, reaches the application layer, which in turn reaches the secondary adapter.
 
-Nesse projeto utilizamos a arquitetura Hexagonal para implementar e gerir features. Para realizar a criação ou a manutenção de uma feature dentro desse repositório, é necessário possuir um conhecimento pelo menos inicial sobre arquitetura Hexágonal, para mantermos o objetivo dessa arquitetura em dia.
-
-Vamos realizar um exemplo prático de inserção de uma nova feature, para que possamos acompanhar o passo a passo do que achamos que é ideal:
-
-### Feature: Buscar um novo User no banco.
-
-Podemos pensar um pouco sobre essa feature antes de executar a construção dela. Diante disso, aqui cabem alguns casos a se pensar:
-
-- _De onde vem a solicitação de busca do usuário?_
-
-  Se por exemplo, a requisição de busca for solicitada diretamente de um dos nossos clients e a comunicação for via HTTP Rest, então podemos adicionar ao adaptador primário ([src/adapter/primary/http/rest](src/adapter/primary/http/rest/user/routes.ts)), onde esse adaptador vai realizar a comunicação interfaceada com as portas responsável por essa comunicação com a camada da aplicação/serviços ([src/core/domain/user/port](src/core/domain/user/port.ts)). Em suma, todos as aplicações que precisarem se conectar na nossa API vão ser destinadas ao lado esquerdo do Hexágono, ou seja, serão sempre adaptadores primários. Basicamente esses adaptadores primários são os nossos usuários, sejam eles clientes finais, produtos que precisam de acesso na nossa API e até mesmo CLI's dependendo do caso. Portanto, novamente, tudo que se conecta à nossa aplicação e demanda dados, podem ser considerados adaptadores primários.
+  The benefit of all this is that it gives us the guarantee that this secondary adapter, by respecting the ports, is able to execute everything that the application layer needs. Here we segregate infrastructure operations from business rules.
 
 <br />
 
-- _Precisamos manipular o dado do usuário? por exemplo, formatá-lo para um modelo diferente..._
+### Implementing the feature, step by step:
 
-  Entendemos nesse exemplo que isso faz parte da regra de negócio da aplicação, então essa condição precisa estar dentro da camada de aplicação, mais precisamente na camada de serviços e domínio, é onde ficam as regras de negócio da aplicação ([src/core/domain/user/service](src/core/domain/user/service.ts), [src/core/domain/user/user](src/core/domain/user/user.ts)).
+We can understand that the process of creating a feature in the hexagonal architecture in this project consists of the following steps:
 
-  Dessa forma, o adaptador primário, que no nosso caso é o client (frontend app que o consumidor final está utilizando) vai realizar a comunicação através das portas e e atingir através delas as camada de serviços e domínios, respeitando estritamente o que as portas dizem.
-
-  O fluxo de uma requisição dentro da arquitetura Hexágonal é geralmente partindo do adaptador primário, passando pela camada de aplicação e chegando nos adaptadores secundários, após esse trajeto, temos o retorno dessa requisição em forma de resposta para o adaptador primário que realizou a ação.
-
-  Voltando para nossa resposta sobre a nossa pergunta, a formatação do dado acontece dentro da camada de aplicação, mais precisamente na camada de serviços, por se tratar de uma regra de negócio.
-
-  Precisamos sempre manter a regra de negócios dentro da camada de aplicação, pois lembrando aqui, os adaptadores são substituiveis, por esse motivo precisamos deixar a nossa regra de negócios isolada.
-
-  Respeitando esse comportamento descrito acima, garantimos que sempre estaremos recebendo o que esperamos, pois as portas se responsabilizam pelos dados que a camada de aplicação precisa.
-
-  Independente de quem se conecta na camada de aplicação (seja qual for o adaptador primário, se ele não respeitar as portas, o mesmo não se conecta na nossa aplicação). Qualquer adaptador secundário pode ser substituído facilmente, pois o seu sucessor precisará apenas implementar as portas que o anterior implementava.
+    1. Understanding what we actually need to create for the new feature
+    2. Create the ports and DTOs that are needed
+    3. Create test cases for the ports and adapters (ideal)
+    4. Create the adapters and implement the ports that have been established by them
+    5. Communicate the adapters with the ports and also the service layers with the adapters.
+    6. Adjust the application's pre-configuration typing, what it will need to meet the new feature (new primary and secondary adapters and so on...)
+    7. Create the adapter documentation
 
 <br />
 
-- _Precisamos salvar um log dentro da aplicação, registrando que essa busca foi realizada pelo nosso client, e aí?_
+Getting started:
 
-  Aqui estaremos falando sobre os adaptadores secundários ([src/adapter/secondary](src/adapter/secondary)). Os adaptadores secundários são vistos como a parte de infraestrutura da aplicação, portanto, dentre eles estão os bancos de dados, filas, libs e assim por diante.
-
-  Se nós precisamos salvar um log dentro do banco, então teremos que fazer com que a nossa camada de aplicação solicite aos adaptadores secundários a execução dessa atividade.
-
-  A requisição arte do adaptador primário, passa pelas portas, atinge a camada de aplicação que por sua vez atinge o adaptador secundário.
-
-  O benefício disso tudo descrito acima é que isso nos da a garantia de que esse adaptador secundário, ao respeitar as portas, está apto para executar tudo que a camada de aplicação precisa. Aqui segregamos o que é operação de infraestrutura e regra de negócios.
-
-<br />
-
-### Implementando a feature, passo a passo:
-
-Podemos entender que o processo de criação de uma feature na arquitetura hexágonal nesse projeto consiste nos seguintes passos:
-
-    1. Entender o que de fato precisamos criar para a nova feature
-    2. Criar as portas e DTO's que são necessários
-    3. Criar casos de teste para as portas e adaptadores (ideal)
-    4. Criar os adaptadores e implementar as portas que foram estabelecidas por eles
-    5. Realizar a comunicação dos adaptadores com as portas e também das camadas de serviço com os adaptadores
-    6. Ajustar a tipagem de pré-configuração da aplicação, o que ela vai precisar para atender a nova feature (novos adaptadores primários e secundários e etc...)
-    7. Criar a documentação dos adaptadores
-
-<br />
-
-Começando:
-
-1. Vamos supor que o domínio User ainda não existe dentro da aplicação, portanto vamos cria-lá no path [src/core/domain](src/core/domain) :
+1. Let's assume that the User domain doesn't yet exist within the application, so let's create it in the path [src/core/domain](src/core/domain) :
 
    <br />
 
@@ -203,31 +182,28 @@ Começando:
 
    <br />
 
-   Os domínios por definição possuem pelo menos um arquivo, sendo ele o próprio que o representa. No caso de User, temos: `user.ts `. Isso porque um domínio pode não possuir regras de negócios, mas existir dentro da aplicacão e fazer parte de outras regras de negócio.
+   Domains by definition have at least one file, which is the one that represents them. In the case of User, we have `user.ts`. This is because a domain may not have business rules, but exist within the application and be part of other business rules.
 
-   No nosso exemplo, criaremos também o arquivo `port.ts ` e `service.ts `, que vão representar respectivamente as portas do domínio User (utilizadas pelos adaptadores) e as regras de negócio do domínio User (geralmente DTO's). Esses arquivos se repetem entre os domínios.
-
-   <br />
-
-2. Após estruturar a pasta do domínio User, vamos criar agora as portas primárias e secundárias, e os respectivos DTO's que atuam dentro delas:
-
-   O DTO nesse caso é o que a nossa porta `get` vai sempre requisitar para todos os adaptadores primários que tentarem se conectar a ela:
+   In our example, we will also create the file `port.ts` and `service.ts`, which will respectively represent the ports of the User domain (used by the adapters) and the business rules of the User domain (usually DTO's). These files are repeated between domains.
 
    <br />
 
+2. After structuring the User domain folder, let's now create the primary and secondary ports, and the respective DTOs that act within them:
+   The DTO in this case is what our `get` port will always request for all primary adapters that try to connect to it:
+
+   <br />
    > (id: string)
-
    <br />
 
    <img src="assets/readme/user-port.png" width="400">
 
    <br />
 
-   Temos o `PrimaryHttpPort`, que é a interface que representa as portas primárias que estão abertas para os adaptadores primários. No nosso caso estamos trabalhando com as portas do tipo HTTP/REST. Se tivermos outra necessidade, por exemplo outros tipos de adaptadores primários se conectando ao nosso domínio User, então teremos que ter interfaces separadas para representar essas outros portas, por exemplo `PrimaryCLIPort`, onde essa porta terá apenas os métodos correspondentes a necessidade desse tipo de adaptador primário.
+   We have `PrimaryHttpPort`, which is the interface that represents the primary ports that are open to the primary adapters. In our case, we're working with HTTP/REST ports. If we have another need, for example other types of primary adapters connecting to our User domain, then we will have to have separate interfaces to represent these other ports, for example `PrimaryCLIPort`, where this port will only have the methods corresponding to the need of that type of primary adapter.
 
-   Outro detalhe que podemos observar é o retorno dessa porta, ela por si só já avisa o que exatamente a mesma vai devolver após ser acionada, trabalhando numa espécie de <I,O>. A visualização fica bem mais clara em relação ao que temos de regra de negócio implementado. Assim como a manutenção, pois para um novo desenvolvedor que está chegando ao projeto gerir as features, basta ele se atentar a quais portas existem e o que as mesmas esperam de Input e devolvem de output.
+   Another detail we can observe is the return from this port, which in itself tells us exactly what it will return after being triggered, working in a kind of <I,O>. The visualization is much clearer in relation to the business rule we have implemented. As well as maintenance, for a new developer who is coming to the project to manage the features, they just need to be aware of which ports exist and what they expect as input and return as output.
 
-   Nessa feature, também vamos realizar uma busca no banco, portanto precisamos fazer a criação das portas secundárias, essas que vão ser utilizadas pelos adaptadores secundários. Vamos criar uma interface chamada por exemplo `SecondaryStoragePort` com o método chamado `getUserById`, para representa-las:
+   In this feature, we're also going to search the database, so we need to create the secondary ports that will be used by the secondary adapters. Let's create an interface called `SecondaryStoragePort`, for example, with a method called `getUserById` to represent them:
 
      <br />
 
@@ -235,162 +211,135 @@ Começando:
 
      <br />
 
-   Portanto, futuramente exigiremos através dessa porta secundária, representada por essa interface `SecondaryStoragePort` que os adaptadores secundários que se conectarem a nossa aplicação implementem essas portas, que por sua vez são representadas pelos nossos métodos. O adaptador secundário vai ser do tipo Storage, pois precisamos do banco para reter as informações dos usuários.
+   Therefore, in the future we will require that the secondary adapters that connect to our application implement these ports, which in turn are represented by our methods, through this secondary port, represented by this `SecondaryStoragePort` interface. The secondary adapter will be of the Storage type, as we need the bank to hold user information.
 
-   Seguindo o mesmo conceito das portas primárias, se caso tivermos outro contexto dentro dos adaptadores secundários que atingem o domínio `User`, teremos que criar outras portas separadas. Um exemplo seria se precisassemos enviar o user para para uma fila, então teriamos de criar uma interface chamada por exemplo `UserSecondaryMessageQueuePort` para representar apenas as portas que são destinadas a esse adaptador secundário em específico.
+   Following the same concept as the primary ports, if we have another context within the secondary adapters that reaches the `User` domain, we will have to create other separate ports. An example would be if we needed to send the user to a queue, then we would have to create an interface called `UserSecondaryMessageQueuePort` to represent only the ports that are destined for that specific secondary adapter.
 
      <br />
 
-3. Após a criação das portas primárias e secundárias e também dos DTO's, já temos recursos suficientes para criarmos por exemplo, casos de teste. Com isso, basta importar as portas e os DTO's para defini-los, visto que estamos programando voltado para a interface e não para os métodos. Porém, nesse exemplo, não criaremos os casos de testes a fim de agilizar o exemplo prático.
+3. After creating the primary and secondary ports as well as the DTOs, we now have enough resources to create test cases, for example. All we need to do is import the ports and DTOs to define them, since we're programming for the interface and not the methods. However, in this example, we won't be creating test cases in order to speed up the practical example.
 
    <br />
 
 <!-- [(Voltar para cima)](#tópicos) -->
 
-4. Agora o próximo passo é implementar as portas na camada de serviço:
+4. Now the next step is to implement the ports in the service layer:
 
    <br />
-
    <img src="assets/readme/user-service.png" width="400">
-
    <br />
 
-   A classe `UserService` implementa as portas contidas na `UserPrimaryHttpPort`. Dessa forma, a interface que representa as portas vai exigir que essa classe implemente os métodos que foram criados, no caso, as próprias portas. Uma vez que os adaptadores primários sofrerem a injeção de dependência da `UserService`, vamos garantir que os mesmos tenham acesso as portas que precisam, e em paralelo a isso vamos garantir a passagem dos DTO's que são definidos pelas portas.
-
+   The `UserService` class implements the ports contained in `UserPrimaryHttpPort`. Thus, the interface that represents the ports will require this class to implement the methods that have been created, in this case, the ports themselves. Once the primary adapters have been injected with a dependency on the `UserService`, we'll ensure that they have access to the ports they need, and in parallel we'll ensure that the DTOs that are defined by the ports pass through.
    <br />
 
-5. Agora vamos fazer com que o nosso adaptador secundário realize a implementação das portas secundárias. Isso porque precisamos garantir que eles implementem as portas secundárias que a nossa camada de aplicação precisa para poder funcionar. Lembrando que para esse exemplo, essas portas são a representação dos métodos de banco, no caso de de leitura, escrita e entre outros.
+5. Now let's get our secondary adapter to implement the secondary ports. This is because we need to ensure that they implement the secondary ports that our application layer needs in order to function. Remember that for this example, these ports are the representation of the bank methods, in the case of reading, writing and so on.
 
-   Após realizar o export da `SecondaryStoragePort`, vamos fazer com que o adaptador secundário, no nosso caso, o `ExampleStorage` [src/adapter/secondary/storage/example/ExampleStorage.ts](src/adapter/secondary/storage/example/ExampleStorage.ts) que foi escolhido para se conectar na aplicação a respeite. Veremos que o nosso adaptador secundário ja implementa outra porta de outro domínio, basta adicionar mais uma.
+   After exporting the `SecondaryStoragePort`, let's make the secondary adapter, in our case the `ExampleStorage` [src/adapter/secondary/storage/example/ExampleStorage.ts](src/adapter/secondary/storage/example/ExampleStorage.ts) that was chosen to connect to the application respect it. We'll see that our secondary adapter already implements another port from another domain, so we just need to add one more.
 
    <br />
-
    <img src="assets/readme/secondary-user-port-imported.png" width="400">
-
    <br />
 
-   Agora o `ExampleStorage`, adaptador secundário, implementa as portas que a interface `SecondaryStoragePort` representa (portas essas que são ditadas pela nossa camada de aplicação).
+   Now `ExampleStorage`, the secondary adapter, implements the ports that the `SecondaryStoragePort` interface represents (ports that are dictated by our application layer).
 
    <br />
-
    <img src="assets/readme/secondary-get-user-method.png" width="400">
-
    <br />
 
-   Dessa forma a classe implementa os métodos dessa interface e garante que a mesma vai atender o que a nossa camada de aplicação precisa.
-
-   Agora basta fazer a nossa camada de serviço se contatar com os adaptadores secundários, através de injeção de dependência e utilizando as portas.
+   In this way, the class implements the methods of this interface and guarantees that it will meet the needs of our application layer.
+   Now we just need to make our service layer contact the secondary adapters, through dependency injection and using the ports.
 
    <br />
-
    <img src="assets/readme/primary-get-user-method.png" width="400">
-
    <br />
 
-   Para seguirmos o exemplo, adicionei uma pequena regra de negócio, a qual deve estar na camada de serviço:
+   To follow the example, I've added a small business rule, which must be in the service layer:
 
     <br />
-
     <img src="assets/readme/business-rule.png" width="400">
-
     <br />
 
-6. Agora que temos as portas primárias e secundárias, DTO's, e adaptadores secundários prontos, podemos criar os adaptadores primários que vão ser os protagonistas em relação ao uso de todos esses itens [src/adapter/primary/http/rest/user](src/adapter/primary/http/rest/user):
+6. Now that we have the primary and secondary ports, DTO's, and secondary adapters ready, we can create the primary adapters that will be the protagonists in relation to the use of all these items [src/adapter/primary/http/rest/user](src/adapter/primary/http/rest/user):
 
    <br />
-
    <img src="assets/readme/primary-user-get-adapter.png" width="400">
+   <br />
+
+7. After all this structuring, we still need to perform dependency injection and type the new adapters in the application.
+   This "typing" is necessary so that our application has a "definition" of what it expects to receive from primary and secondary adapters in order to function.
+
+   In this way, we avoid removing any adapters required by the application and eventually crashing it during an execution that requires that adapter.
+   The idea is to make sure that before it starts, the application has everything it needs in terms of configuration, i.e:
+
+   1. Primary adapters
+   2. Secondary adapters
+   3. Environment configurations
 
    <br />
 
-7. Após toda essa estruturação, precisamos ainda realizar a injeção de dependência e tipar os novos adaptadores na aplicação.
-
-   Essa "tipagem" se faz necessária para que a nossa aplicação tenha como uma "definição" o que ela espera receber de adaptadores primários e secundários para funcionar.
-
-   Dessa forma, evitamos que a remoção de algum adaptador exigido pela aplicação seja feito e a mesma eventualmente quebre em alguma execução que exija esse adaptador.
-
-   A ideia é fazer com que antes que seja iniciada, a aplicação tenha tudo o que precisa a nível de configuração, isto é:
-
-   1. Adaptadores primários
-   2. Adaptadores secundários
-   3. Configurações de environment
-
-   <br />
-
-   Então, para fazermos isso, basta alterarmos o arquivo [src/core/app/index.ts](src/core/app/index.ts), que faz a junção de todas as camadas da nossa estrutura hexágonal:
+   So, to do this, we just need to change the file [src/core/app/index.ts](src/core/app/index.ts), which joins all the layers of our hexagonal structure:
 
 <br />
 
-8. Alterando a tipagem de configuração da aplicação [src/core/app/settings.ts](src/core/app/settings.ts):
+8. Changing the application configuration typing [src/core/app/settings.ts](src/core/app/settings.ts):
 
    <br />
-
    <img src="assets/readme/application-settings-type.png" width="400">
-
    <br />
 
-   Nesse arquivo é onde mantemos a exigência do que vai entrar na aplicação. Portanto, como estamos criando um novo domínio, precisamos inserir o mesmo ali dentro.
+   In this file is where we keep the requirement of what will go into the application. Therefore, as we are creating a new domain, we need to insert it in there.
 
-   Assim como se fossemos precisar de uma nova lib, ou um novo adaptador secundário por exemplo, precisariamos indicar nas tipagens de configuração da aplicação pois tudo é feito através de injeção de dependência.
+   Just as if we were going to need a new lib, or a new secondary adapter for example, we would need to indicate it in the application's configuration types because everything is done through dependency injection.
 
-   O principal benefício disso é o desacoplamento entre os adaptadores e a camdada de aplicação. Se um dia precisarmos alterar uma lib por exemplo que está sendo injetada na aplicação, precisamos apenas substitui-la na própria classe dela. Isso evita refatorações em massa.
-
+   The main benefit of this is the decoupling of the adapters from the application layer. If one day we need to change a lib, for example, that is being injected into the application, we just need to replace it in its own class. This avoids massive refactoring.
    <br />
 
-9. Portanto, agora vamos realizar de fato a injeção de dependência [src/core/app/index.ts](src/core/app/index.ts):
+9. So now let's actually perform the dependency injection [src/core/app/index.ts](src/core/app/index.ts):
 
    <br />
-
    <img src="assets/readme/dependency-injection.png" width="400">
-
    <br />
 
-E assim finalizamos o processo de criação de uma feature.
+This concludes the process of creating a feature.
 
 <br />
 
-[(Voltar ao topo)](#tópicos)
-
+[(Back to top)](#topics)
 <br />
 
-### Como criar um adaptador primário no projeto utilizando o Hexagonal?
+### How to create a primary adapter in the project using Hexagonal?
 
 To do
 
 <br />
 
-[(Voltar ao topo)](#tópicos)
-
+[(Back to top)](#topics)
 <br />
 
-### Como criar um adaptador secundário no projeto utilizando o Hexagonal?
+### How to create a secondary adapter in the project using Hexagonal?
 
 To do
 
 <br />
 
-[(Voltar ao topo)](#tópicos)
+[(Back to top)](#topics)
+<br />
+
+### Versioning pattern
+
+This repository uses `Trunk Based Development` as the versioning standard in the repository.
 
 <br />
 
-### Padrão de versionamento
-
-Esse repositório utiliza o `Trunk Based Development` como padrão de versionamento no repositório.
+- [What is Trunk Based Development?](https://trunkbaseddevelopment.com/)
 
 <br />
-
-- [O que é Trunk Based Development?](https://trunkbaseddevelopment.com/)
-
+[(Back to top)](#topics)
 <br />
 
-[(Voltar ao topo)](#tópicos)
+### Technical debits
 
-<br />
-
-### Débitos técnicos
-
-Os débitos técnicos são listados em forma de issues no próprio Github. Por favor, para listar os débitos técnicos, utilize a aba issues desse repositório e a label `Technical Debt`
-
+Technical debts are listed in the form of issues on Github itself. Please, to list technical debts, use the issues tab of this repository and the label `Technical Debt`.
 <br />
 
 [(Voltar ao topo)](#tópicos)
@@ -399,20 +348,16 @@ Os débitos técnicos são listados em forma de issues no próprio Github. Por f
 
 ### Devops
 
-Atualmente contamos com o Github Actions para realizar o deploy do projeto. Hoje temos os seguintes ambientes disponibilizados:
-
-    1. HML
-    2. PRD
-
-É necessário configurar as envs do GCP para atrelar o actions ao GCP.
+We currently use Github Actions to deploy the project. Today we have the following environments available: 1. HML 2. PRD
+You need to configure the GCP envs to link the actions to the GCP.
 
 <br />
 
-[(Voltar ao topo)](#tópicos)
+[(Back to top)](#topics)
 
 <br />
 
-### Contribuidores
+### Contributors
 
 <br />
 
